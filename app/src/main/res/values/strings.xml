@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">手势识别</string>
+
+    <string name="permission_denied">权限被拒绝，您可以在权限管理中打开该权限</string>
+
+    <string-array name="gesture_type">
+        <item>作揖</item>
+        <item>大 V 字</item>
+        <item>双指朝上</item>
+        <item>握拳</item>
+        <item>手张开</item>
+        <item>比心 A</item>
+        <item>比心 B</item>
+        <item>比心 C</item>
+        <item>比心 D</item>
+        <item>食指朝上</item>
+        <item>合十</item>
+        <item>OK</item>
+        <item>手心向上</item>
+        <item>打电话</item>
+        <item>ROCK</item>
+        <item>感谢</item>
+        <item>大拇指向下</item>
+        <item>大拇指向上</item>
+        <item>未定义手势</item>
+        <item>胜利</item>
+    </string-array>
+
+</resources>
