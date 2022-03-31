@@ -26,4 +26,11 @@
         <item>胜利</item>
     </string-array>
 
+    <string-array name="gesture_simple">
+        <item>石头</item>
+        <item>剪刀</item>
+        <item>布</item>
+        <item>未定义手势</item>
+    </string-array>
+
 </resources>

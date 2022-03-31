@@ -31,6 +31,8 @@ import com.aphrodite.regnizegesturedemo.model.bean.GestureTypesBean;
 import com.aphrodite.regnizegesturedemo.model.bean.HandBean;
 import com.aphrodite.regnizegesturedemo.model.network.api.RequestApi;
 import com.aphrodite.regnizegesturedemo.model.network.response.GestureResponse;
+import com.aphrodite.regnizegesturedemo.model.network.response.PersonResponse;
+import com.aphrodite.regnizegesturedemo.model.network.response.StudentResponse;
 import com.aphrodite.regnizegesturedemo.util.ThumbnailUtils;
 import com.sh.shvideolibrary.VideoInputActivity;
 
@@ -90,6 +92,8 @@ public class MainActivity extends AppCompatActivity {
     private void initData() {
         mRetrofitInit = FrameApplication.getApplication().getRetrofitInit(true, BuildConfig.SERVER_URL, null);
         mRequestApi = mRetrofitInit.getRetrofit().create(RequestApi.class);
+
+//        queryStudent();
     }
 
     @Override
@@ -263,6 +267,60 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
+    }
+
+    private void queryPerson() {
+        mRequestApi.queryPerson()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<PersonResponse>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(PersonResponse personResponse) {
+                        Log.d(TAG, personResponse.toString());
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+    }
+
+    private void queryStudent() {
+        mRequestApi.queryStudent()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<StudentResponse>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(StudentResponse studentResponse) {
+                        Log.d(TAG, studentResponse.toString());
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
     }
 
     @OnClick(R.id.record_btn)

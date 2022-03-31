@@ -1,11 +1,14 @@
 package com.aphrodite.regnizegesturedemo.model.network.api;
 
 import com.aphrodite.regnizegesturedemo.model.network.response.GestureResponse;
+import com.aphrodite.regnizegesturedemo.model.network.response.PersonResponse;
+import com.aphrodite.regnizegesturedemo.model.network.response.StudentResponse;
 
 import java.util.List;
 
 import io.reactivex.Observable;
 import okhttp3.MultipartBody;
+import retrofit2.http.GET;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
@@ -32,4 +35,10 @@ public interface RequestApi {
     @Multipart      //文件上传类型头
     @POST("jqd/study/gesture")
     Observable<GestureResponse> queryGesture(@Part List<MultipartBody.Part> partLis);
+
+    @GET("ServletDemo_war_exploded/QueryPersonServlet")
+    Observable<PersonResponse> queryPerson();
+
+    @GET("ServletDemo_war_exploded/QueryPersonServlet")
+    Observable<StudentResponse> queryStudent();
 }

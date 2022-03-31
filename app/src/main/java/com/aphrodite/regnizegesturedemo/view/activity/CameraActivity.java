@@ -62,6 +62,8 @@ public class CameraActivity extends AppCompatActivity {
     FrameLayout mCameraRoot;
     @BindArray(R.array.gesture_type)
     String[] mGestureTypes;
+    @BindArray(R.array.gesture_simple)
+    String[] mGestureSimple;
 
     private ARRecordButton mTakePhotoBtn;
 
@@ -267,12 +269,58 @@ public class CameraActivity extends AppCompatActivity {
 
             Collections.sort(percent);
 
-            GestureTypesBean bean = percent.get(0);
-            if (!ObjectUtils.isEmpty(bean)) {
-                ToastUtils.showMessage("识别结果为：" + mGestureTypes[bean.getId()] + ",识别率为：" + bean.getPercent());
+            if (ObjectUtils.isOutOfBounds(percent, 3)) {
+                return;
+            }
+
+            GestureTypesBean bean = null;
+            boolean isIdentify = false;
+            for (int j = 0; j < 3; j++) {
+                bean = percent.get(j);
+                if (ObjectUtils.isEmpty(bean)) {
+                    continue;
+                }
+
+                switch (bean.getId()) {
+                    //布
+                    case 4:
+                        ToastUtils.showMessage("识别结果为：" + mGestureSimple[2]);
+                        isIdentify = true;
+                        break;
+                    //石头
+                    case 3:
+                    case 16:
+                    case 17:
+                        ToastUtils.showMessage("识别结果为：" + mGestureSimple[0]);
+                        isIdentify = true;
+                        break;
+                    //剪刀
+                    case 2:
+                    case 19:
+                        ToastUtils.showMessage("识别结果为：" + mGestureSimple[1]);
+                        isIdentify = true;
+                        break;
+                    //未定义
+                    default:
+                        if (bean.getPercent() >= 90) {
+                            ToastUtils.showMessage("识别结果为：" + mGestureSimple[3]);
+                            isIdentify = true;
+                        } else {
+                            isIdentify = false;
+                        }
+                        break;
+                }
+
+                if (isIdentify) {
+                    break;
+                } else {
+                    if (j >= 2) {
+                        ToastUtils.showMessage("识别结果为：" + mGestureSimple[3]);
+                        break;
+                    }
+                }
             }
         }
-
     }
 
     private void takePhoto() {
